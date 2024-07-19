@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 717161882138.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker images...
+      - docker build -t server -f ./Dockerfile .
+      - docker tag server:latest 717161882138.dkr.ecr.us-east-1.amazonaws.com/server:latest
+      - docker build -t redis -f ./Dockerfile.redis .
+      - docker tag redis:latest 717161882138.dkr.ecr.us-east-1.amazonaws.com/redis:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push 717161882138.dkr.ecr.us-east-1.amazonaws.com/server:latest
+      - docker push 717161882138.dkr.ecr.us-east-1.amazonaws.com/redis:latest

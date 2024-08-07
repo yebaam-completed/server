@@ -7,10 +7,13 @@ import { IQueryComplete, IQueryDeleted, IStory } from '../interfaces/story.inter
 class StoryService {
   public async addStoryToDB(userId: string, createdStory: IStory): Promise<void> {
     const story: Promise<IStory> = StoryModel.create(createdStory);
-    const user: UpdateQuery<IUserDocument> = UserModel.updateOne({ _id: userId }, { $inc: { storiesCount: 1 } });
-    await Promise.all([story, user]);
+    const userUpdate: UpdateQuery<IUserDocument> = UserModel.updateOne(
+      { _id: userId },
+      { $push: { stories: createdStory._id }, $inc: { storiesCount: 1 } }
+    );
+    await Promise.all([story, userUpdate]);
   }
-
+  
   public async getUserStories(userId: string, skip = 0, limit = 0, sort: Record<string, 1 | -1>): Promise<IStory[]> {
     const stories: IStory[] = await StoryModel.find({ userId })
       .sort(sort)

@@ -14,7 +14,6 @@ class StoryRoutes {
     this.router.get('/stories/all/:page', authMiddleware.checkAuthentication, Get.prototype.getUserStories);
     this.router.get('/stories/images/:page', authMiddleware.checkAuthentication, Get.prototype.getUserStoriesWithImages);
 
-    // this.router.post('/story', authMiddleware.checkAuthentication, (req,res)=>res.send('hola'));
     this.router.post('/story', authMiddleware.checkAuthentication, Create.prototype.createStory);
     this.router.post('/story/image', authMiddleware.checkAuthentication, Create.prototype.createStoryWithImage);
 

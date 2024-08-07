@@ -8,7 +8,7 @@ Accept: application/json
 withCredentials: true
 
 {
-  "content": "Esta es mi primera historia"
+  "content": "Esta es mi primera historia cuatar"
 }
 
 ###

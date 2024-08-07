@@ -23,6 +23,7 @@ import { FriendRequestSocket } from '@socket/sendfriend';
 import { SocketIONotificationHandler } from '@socket/notification';
 import { SocketIOUserHandler } from '@user/socket/user';
 import { SocketIOStoryHandler } from '@socket/storySocket';
+import { SocketIOBlogHandler } from '@socket/blog';
 
 const SERVER_PORT = config.PORT;
 const log: Logger = config.createLogger('server');
@@ -144,7 +145,9 @@ export class ChatServer {
     const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
     const storySocketHandler: SocketIOStoryHandler = new SocketIOStoryHandler(io);
+    const blogSocketHandler: SocketIOBlogHandler = new SocketIOBlogHandler(io);
 
+    blogSocketHandler.listen();
     storySocketHandler.listen();
     postSocketHandler.listen();
     followerSocketHandler.listen();

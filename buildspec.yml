@@ -1,21 +1,45 @@
-version: 0.2
-
-phases:
-  pre_build:
-    commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 717161882138.dkr.ecr.us-east-1.amazonaws.com
-  build:
-    commands:
-      - echo Build started on `date`
-      - echo Building the Docker images...
-      - docker build -t server -f ./Dockerfile .
-      - docker tag server:latest 717161882138.dkr.ecr.us-east-1.amazonaws.com/server:latest
-      - docker build -t redis -f ./Dockerfile.redis .
-      - docker tag redis:latest 717161882138.dkr.ecr.us-east-1.amazonaws.com/redis:latest
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push 717161882138.dkr.ecr.us-east-1.amazonaws.com/server:latest
-      - docker push 717161882138.dkr.ecr.us-east-1.amazonaws.com/redis:latest
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "server",
+      "image": "717161882138.dkr.ecr.us-east-1.amazonaws.com/server-monolitico:latest",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "containerPort": 4000,
+          "hostPort": 4000
+        }
+      ],
+      "environment": [
+        { "name": "DATABASE_URL", "value": "mongodb+srv://<user>:<password>@cluster.mongodb.net/db_develop" },
+        { "name": "JWT_TOKEN", "value": "mamasita" },
+        { "name": "NODE_ENV", "value": "production" },
+        { "name": "SECRET_KEY_ONE", "value": "1282722b942e08c8a6cb033aa6ce850e" },
+        { "name": "SECRET_KEY_TWO", "value": "8db8f85991bb28f45ac0107f2a1b349c" },
+        { "name": "CLIENT_URL", "value": "http://localhost:3000" },
+        { "name": "REDIS_HOST", "value": "redis://redis:6379" },
+        { "name": "CLOUD_NAME", "value": "dzqpacupf" },
+        { "name": "CLOUD_API_KEY", "value": "372698151483913" },
+        { "name": "CLOUD_API_SECRET", "value": "jOQuZp4KIMI_4PhXlG5Z-QNSqVE" },
+        { "name": "SENDGRID_SENDER", "value": "wuO5y0VhTpuvP025l9-VUQ" },
+        { "name": "SENDER_EMAIL_PASSWORD", "value": "kRY8BSGYC1t8R32Gwx" },
+        { "name": "SENDGRID_API_KEY", "value": "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" },
+        { "name": "SENDER_EMAIL", "value": "pansy.lemke@ethereal.email" }
+      ]
+    },
+    {
+      "name": "redis",
+      "image": "717161882138.dkr.ecr.us-east-1.amazonaws.com/redis:latest",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "containerPort": 6379,
+          "hostPort": 6379
+        }
+      ]
+    }
+  ]
+}

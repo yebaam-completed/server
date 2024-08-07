@@ -86,7 +86,7 @@ export class SignUp {
   
     const userDataForCache: IUserDocument = SignUp.prototype.userData(authData, userObjectId);
     userDataForCache.profilePicture = `https://res.cloudinary.com/dzqpacupf/image/upload/v${result.version}/${userObjectId}`;
-    console.log('Datos que se envían para guardar el usuario:', userDataForCache);
+    // console.log('Datos que se envían para guardar el usuario:', userDataForCache);
   
     await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
   

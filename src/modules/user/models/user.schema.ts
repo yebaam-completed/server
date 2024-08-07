@@ -12,6 +12,11 @@ const userSchema: Schema = new Schema({
   passwordResetExpires: { type: Number },
   blocked: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   blockedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  status: {
+    type: String,
+    enum: ['online', 'offline', 'busy'],
+    default: 'offline'
+  },
   notifications: {
     messages: { type: Boolean, default: true },
     reactions: { type: Boolean, default: true },

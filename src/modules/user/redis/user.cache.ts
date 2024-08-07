@@ -190,7 +190,7 @@ export class UserCache extends BaseCache {
       searchHistory: JSON.stringify(searchHistory)
     };
   
-    console.log('Guardando en Redis:', dataToSave);
+    // console.log('Guardando en Redis:', dataToSave);
   
     try {
       if (!this.client.isOpen) {

@@ -55,6 +55,20 @@ class NotificationService {
     await NotificationModel.deleteOne({ _id: notificationId }).exec();
   }
 
+  // public async sendNotification(params: SendNotificationParams): Promise<INotificationDocument> {
+  //   const newNotification = new NotificationModel({
+  //     userTo: new mongoose.Types.ObjectId(params.toUserId),
+  //     userFrom: new mongoose.Types.ObjectId(params.fromUserId),
+  //     notificationType: params.type,
+  //     message: params.message,
+  //     createdItemId: params.requestId
+  //   });
+
+  //   await newNotification.save();
+  //   return newNotification;
+  // }
+
+
   public async sendNotification(params: SendNotificationParams): Promise<INotificationDocument> {
     const newNotification = new NotificationModel({
       userTo: new mongoose.Types.ObjectId(params.toUserId),

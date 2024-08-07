@@ -1,5 +1,7 @@
 
-@baseUrl = http://localhost:4000
+# @baseUrl = http://yeebam-dev.eba-jubbbszd.us-east-1.elasticbeanstalk.com
+@baseUrl = http://localhost:5000
+
 @urlPath = api/v1
 
 ###
@@ -9,9 +11,9 @@ Accept: application/json
 withCredentials: true
 
 {
-  "username": "camila",
+  "username": "cacareo",
   "password": "dym123",
-  "email": "camila@test.com",
+  "email": "cacareo@test.com",
   "avatarColor": "blue",
   "avatarImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAAMyAQMAAABtkHM/AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAf8CLd4AAABrSURBVBgZ7cGBAAAAAMOg+1NP4AjVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjgBSwwABwrL8wAAAAABJRU5ErkJggg=="
 }
@@ -22,10 +24,33 @@ Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
+# miguel
 {
-  "username": "maria",
+  "username": "cacareo",
   "password": "dym123"
 }
+
+
+###
+GET  {{baseUrl}}/{{urlPath}}/friend-requests/
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/user/profile/user/suggestions
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/notifications
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
 
 ###
 GET {{baseUrl}}/{{urlPath}}/signout
@@ -38,6 +63,13 @@ GET {{baseUrl}}/{{urlPath}}/currentuser
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/refresh-token
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
 
 ###
 POST {{baseUrl}}/{{urlPath}}/forgot-password

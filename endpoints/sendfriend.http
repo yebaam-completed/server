@@ -28,3 +28,19 @@ withCredentials: true
   "senderId": "ID_DEL_USUARIO_QUE_ENVIA",
   "receiverId": "ID_DEL_USUARIO_QUE_RECIBE"
 }
+
+###
+GET  {{baseUrl}}/{{urlPath}}/friend-requests/
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+
+#  this.router.post('/send', authMiddleware.checkAuthentication, this.friendRequestController.sendFriendRequest);
+#     this.router.post('/accept/:requestId', authMiddleware.checkAuthentication, this.friendRequestController.acceptFriendRequest);
+#     this.router.post('/reject/:requestId', authMiddleware.checkAuthentication, this.friendRequestController.rejectFriendRequest);
+
+
+#     this.router.get('/friend-requests', authMiddleware.checkAuthentication, this.friendRequestController.getFriendRequests);
+#     this.router.delete('/friend-requests/:requestId', authMiddleware.checkAuthentication, this.friendRequestController.cancelFriendRequest);

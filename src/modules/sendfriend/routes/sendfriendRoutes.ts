@@ -17,6 +17,10 @@ class SendFriendRoutes {
     this.router.post('/accept/:requestId', authMiddleware.checkAuthentication, this.friendRequestController.acceptFriendRequest);
     this.router.post('/reject/:requestId', authMiddleware.checkAuthentication, this.friendRequestController.rejectFriendRequest);
 
+
+    this.router.get('/friend-requests', authMiddleware.checkAuthentication, this.friendRequestController.getFriendRequests);
+    this.router.delete('/friend-requests/:requestId', authMiddleware.checkAuthentication, this.friendRequestController.cancelFriendRequest);
+
     return this.router;
   }
 }

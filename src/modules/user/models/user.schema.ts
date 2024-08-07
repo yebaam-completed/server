@@ -123,6 +123,7 @@ const userSchema: Schema = new Schema({
   friendsCount: { type: Number, default: 0 },
   reels: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reel' }],
   stories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Story' }],
+  blog: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }],
 
   detalles: {
     presentacion: { type: String, default: '' },

@@ -177,6 +177,7 @@ class UserService {
       friendRequests: 1,
       friendsCount: 1,
       reels: 1,
+      blog: 1,
       stories: 1,
       detalles: 1
     };

@@ -1,8 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 
 export interface IBlogDocument extends Document {
-  imgId: string[];
-  imgVersion: string[];
   _id?: string | mongoose.Types.ObjectId;
   userId: string;
   title: string;
